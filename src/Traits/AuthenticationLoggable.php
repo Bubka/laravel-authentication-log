@@ -13,7 +13,7 @@ trait AuthenticationLoggable
      */
     public function authentications()
     {
-        return $this->morphMany(AuthenticationLog::class, 'authenticatable')->latest('login_at');
+        return $this->morphMany(AuthenticationLog::class, 'authenticatable')->latest('id');
     }
 
     public function latestAuthentication()
