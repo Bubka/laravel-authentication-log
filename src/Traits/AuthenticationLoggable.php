@@ -6,6 +6,11 @@ use Bubka\LaravelAuthenticationLog\Models\AuthenticationLog;
 
 trait AuthenticationLoggable
 {
+    /**
+     * Get all user's authentications from the auth log
+     * 
+     * @return Collection<int, AuthenticationLog>
+     */
     public function authentications()
     {
         return $this->morphMany(AuthenticationLog::class, 'authenticatable')->latest('login_at');
@@ -21,32 +26,50 @@ trait AuthenticationLoggable
         return ['mail'];
     }
 
-    public function lastLoginAt()
+    /**
+     * Get the user's latest authentication datetime
+     */
+    public function lastLoginAt() : ?Carbon
     {
         return $this->authentications()->first()?->login_at;
     }
 
-    public function lastSuccessfulLoginAt()
+    /**
+     * Get the user's latest successful login datetime
+     */
+    public function lastSuccessfulLoginAt() : ?Carbon
     {
         return $this->authentications()->whereLoginSuccessful(true)->first()?->login_at;
     }
 
-    public function lastLoginIp()
+    /**
+     * Get the ip address of user's latest login
+     */
+    public function lastLoginIp() : ?string
     {
         return $this->authentications()->first()?->ip_address;
     }
 
-    public function lastSuccessfulLoginIp()
+    /**
+     * Get the ip address of user's latest successful login
+     */
+    public function lastSuccessfulLoginIp() : ?string
     {
         return $this->authentications()->whereLoginSuccessful(true)->first()?->ip_address;
     }
 
-    public function previousLoginAt()
+    /**
+     * Get the user's previous login datetime
+     */
+    public function previousLoginAt() : ?Carbon
     {
         return $this->authentications()->skip(1)->first()?->login_at;
     }
 
-    public function previousLoginIp()
+    /**
+     * Get the ip address of user's previous login
+     */
+    public function previousLoginIp() : ?string
     {
         return $this->authentications()->skip(1)->first()?->ip_address;
     }

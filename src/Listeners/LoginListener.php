@@ -17,7 +17,7 @@ class LoginListener
         $this->request = $request;
     }
 
-    public function handle($event): void
+    public function handle(mixed $event): void
     {
         $listener = config('authentication-log.events.login', Login::class);
 
@@ -40,7 +40,8 @@ class LoginListener
             $userAgent = $this->request->userAgent();
             $known = $user->authentications()->whereIpAddress($ip)->whereUserAgent($userAgent)->whereLoginSuccessful(true)->first();
             $newUser = Carbon::parse($user->{$user->getCreatedAtColumn()})->diffInMinutes(Carbon::now()) < 1;
-
+            
+            /** @disregard Undefined function */
             $log = $user->authentications()->create([
                 'ip_address' => $ip,
                 'user_agent' => $userAgent,

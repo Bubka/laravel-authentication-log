@@ -14,19 +14,31 @@ class FailedLogin extends Notification implements ShouldQueue
 {
     use Queueable;
 
+    /**
+     * The AuthenticationLog model instance
+     */
     public AuthenticationLog $authenticationLog;
 
+    /**
+     * 
+     */
     public function __construct(AuthenticationLog $authenticationLog)
     {
         $this->authenticationLog = $authenticationLog;
     }
 
-    public function via($notifiable)
+    /**
+     * Get the notification's channels.
+     */
+    public function via(mixed $notifiable) : array|string
     {
         return $notifiable->notifyAuthenticationLogVia();
     }
 
-    public function toMail($notifiable)
+    /**
+     * Build the mail representation of the notification.
+     */
+    public function toMail(mixed $notifiable) : MailMessage
     {
         return (new MailMessage())
             ->subject(__('A failed login to your account'))

@@ -16,7 +16,7 @@ class OtherDeviceLogoutListener
         $this->request = $request;
     }
 
-    public function handle($event): void
+    public function handle(mixed $event): void
     {
         $listener = config('authentication-log.events.other-device-logout', OtherDeviceLogout::class);
 
