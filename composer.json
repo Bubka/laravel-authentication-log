@@ -1,58 +1,42 @@
 {
-    "name": "rappasoft/laravel-authentication-log",
+    "name": "bubka/laravel-authentication-log",
     "description": "Log user authentication details and send new device notifications.",
     "keywords": [
-        "rappasoft",
         "laravel",
         "laravel-authentication-log"
     ],
-    "homepage": "https://github.com/rappasoft/laravel-authentication-log",
+    "homepage": "https://github.com/bubka/laravel-authentication-log",
     "license": "MIT",
     "authors": [
         {
-            "name": "Anthony Rappa",
-            "email": "rappa819@gmail.com",
-            "role": "Developer"
+            "name": "Bubka"
         }
     ],
     "require": {
         "php": "^8.1",
         "illuminate/contracts": "^10.0|^11.0",
+        "laravel/pint": "^1.15",
+        "phpstan/phpstan": "^1.10",
         "spatie/laravel-package-tools": "^1.4.3"
     },
     "require-dev": {
+        "larastan/larastan": "^2.9",
         "nunomaduro/collision": "^6.0",
-        "orchestra/testbench": "^7.0",
-        "pestphp/pest": "^1.21",
-        "pestphp/pest-plugin-laravel": "^1.2",
-        "spatie/laravel-ray": "^1.29",
-        "vimeo/psalm": "^4.20"
+        "orchestra/testbench": "^8.22"
     },
     "autoload": {
         "psr-4": {
-            "Rappasoft\\LaravelAuthenticationLog\\": "src",
-            "Rappasoft\\LaravelAuthenticationLog\\Database\\Factories\\": "database/factories"
+            "Bubka\\LaravelAuthenticationLog\\": "src",
+            "Bubka\\LaravelAuthenticationLog\\Database\\Factories\\": "database/factories"
         }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Rappasoft\\LaravelAuthenticationLog\\Tests\\": "tests"
-        }
-    },
-    "scripts": {
-        "test": "./vendor/bin/pest --no-coverage",
-        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
     },
     "config": {
-        "sort-packages": true,
-        "allow-plugins": {
-            "pestphp/pest-plugin": true
-        }
+        "sort-packages": true
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Rappasoft\\LaravelAuthenticationLog\\LaravelAuthenticationLogServiceProvider"
+                "Bubka\\LaravelAuthenticationLog\\LaravelAuthenticationLogServiceProvider"
             ]
         }
     },
