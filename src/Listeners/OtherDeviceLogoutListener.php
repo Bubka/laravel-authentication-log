@@ -2,10 +2,10 @@
 
 namespace Bubka\LaravelAuthenticationLog\Listeners;
 
-use Illuminate\Auth\Events\OtherDeviceLogout;
-use Illuminate\Http\Request;
 use Bubka\LaravelAuthenticationLog\Models\AuthenticationLog;
 use Bubka\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
+use Illuminate\Auth\Events\OtherDeviceLogout;
+use Illuminate\Http\Request;
 
 class OtherDeviceLogoutListener
 {
@@ -16,7 +16,7 @@ class OtherDeviceLogoutListener
         $this->request = $request;
     }
 
-    public function handle(mixed $event): void
+    public function handle(mixed $event) : void
     {
         $listener = config('authentication-log.events.other-device-logout', OtherDeviceLogout::class);
 
@@ -25,7 +25,7 @@ class OtherDeviceLogoutListener
         }
 
         if ($event->user) {
-            if(! in_array(AuthenticationLoggable::class, class_uses_recursive(get_class($event->user)))) {
+            if (! in_array(AuthenticationLoggable::class, class_uses_recursive(get_class($event->user)))) {
                 return;
             }
 
@@ -37,7 +37,7 @@ class OtherDeviceLogoutListener
                 $ip = $this->request->ip();
             }
 
-            $userAgent = $this->request->userAgent();
+            $userAgent         = $this->request->userAgent();
             $authenticationLog = $user->authentications()->whereIpAddress($ip)->whereUserAgent($userAgent)->first();
 
             if (! $authenticationLog) {
@@ -51,7 +51,7 @@ class OtherDeviceLogoutListener
                 if ($log->id !== $authenticationLog->id) {
                     $log->update([
                         'cleared_by_user' => true,
-                        'logout_at' => now(),
+                        'logout_at'       => now(),
                     ]);
                 }
             }

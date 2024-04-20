@@ -2,10 +2,10 @@
 
 namespace Bubka\LaravelAuthenticationLog\Listeners;
 
-use Illuminate\Auth\Events\Failed;
-use Illuminate\Http\Request;
 use Bubka\LaravelAuthenticationLog\Notifications\FailedLogin;
 use Bubka\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
+use Illuminate\Auth\Events\Failed;
+use Illuminate\Http\Request;
 
 class FailedLoginListener
 {
@@ -16,7 +16,7 @@ class FailedLoginListener
         $this->request = $request;
     }
 
-    public function handle(mixed $event): void
+    public function handle(mixed $event) : void
     {
         $listener = config('authentication-log.events.failed', Failed::class);
 
@@ -25,7 +25,7 @@ class FailedLoginListener
         }
 
         if ($event->user) {
-            if(! in_array(AuthenticationLoggable::class, class_uses_recursive(get_class($event->user)))) {
+            if (! in_array(AuthenticationLoggable::class, class_uses_recursive(get_class($event->user)))) {
                 return;
             }
 
@@ -37,11 +37,11 @@ class FailedLoginListener
 
             /** @disregard Undefined function */
             $log = $event->user->authentications()->create([
-                'ip_address' => $ip,
-                'user_agent' => $this->request->userAgent(),
-                'login_at' => now(),
+                'ip_address'       => $ip,
+                'user_agent'       => $this->request->userAgent(),
+                'login_at'         => now(),
                 'login_successful' => false,
-                'location' => config('authentication-log.notifications.new-device.location') ? optional(geoip()->getLocation($ip))->toArray() : null,
+                'location'         => config('authentication-log.notifications.new-device.location') ? optional(geoip()->getLocation($ip))->toArray() : null,
             ]);
 
             if (config('authentication-log.notifications.failed-login.enabled')) {

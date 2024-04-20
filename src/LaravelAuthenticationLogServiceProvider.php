@@ -2,14 +2,14 @@
 
 namespace Bubka\LaravelAuthenticationLog;
 
-use Illuminate\Contracts\Events\Dispatcher;
 use Bubka\LaravelAuthenticationLog\Commands\PurgeAuthenticationLogCommand;
+use Illuminate\Contracts\Events\Dispatcher;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class LaravelAuthenticationLogServiceProvider extends PackageServiceProvider
 {
-    public function configurePackage(Package $package): void
+    public function configurePackage(Package $package) : void
     {
         $package
             ->name('laravel-authentication-log')
@@ -21,7 +21,7 @@ class LaravelAuthenticationLogServiceProvider extends PackageServiceProvider
 
         $events = $this->app->make(Dispatcher::class);
 
-        foreach (config('authentication-log.events',[]) as $event => $eventClass) {
+        foreach (config('authentication-log.events', []) as $event => $eventClass) {
             if (class_exists($eventClass) && class_exists(config('authentication-log.listeners.' . $event))) {
                 $events->listen(
                     $eventClass,

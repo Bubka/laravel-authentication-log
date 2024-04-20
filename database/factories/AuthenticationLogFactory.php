@@ -2,8 +2,8 @@
 
 namespace Bubka\LaravelAuthenticationLog\Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Bubka\LaravelAuthenticationLog\Models\AuthenticationLog;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends Factory<AuthenticationLog>

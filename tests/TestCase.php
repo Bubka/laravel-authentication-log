@@ -2,18 +2,18 @@
 
 namespace Bubka\LaravelAuthenticationLog\Tests;
 
+use Bubka\LaravelAuthenticationLog\LaravelAuthenticationLogServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Bubka\LaravelAuthenticationLog\LaravelAuthenticationLogServiceProvider;
 
 class TestCase extends Orchestra
 {
-    protected function setUp(): void
+    protected function setUp() : void
     {
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Bubka\\AuthenticationLog\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName) => 'Bubka\\AuthenticationLog\\Database\\Factories\\' . class_basename($modelName) . 'Factory'
         );
     }
 

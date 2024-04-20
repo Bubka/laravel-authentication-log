@@ -2,10 +2,10 @@
 
 namespace Bubka\LaravelAuthenticationLog\Listeners;
 
-use Illuminate\Auth\Events\Logout;
-use Illuminate\Http\Request;
 use Bubka\LaravelAuthenticationLog\Models\AuthenticationLog;
 use Bubka\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
+use Illuminate\Auth\Events\Logout;
+use Illuminate\Http\Request;
 
 class LogoutListener
 {
@@ -16,7 +16,7 @@ class LogoutListener
         $this->request = $request;
     }
 
-    public function handle(mixed $event): void
+    public function handle(mixed $event) : void
     {
         $listener = config('authentication-log.events.logout', Logout::class);
 
@@ -25,7 +25,7 @@ class LogoutListener
         }
 
         if ($event->user) {
-            if(! in_array(AuthenticationLoggable::class, class_uses_recursive(get_class($event->user)))) {
+            if (! in_array(AuthenticationLoggable::class, class_uses_recursive(get_class($event->user)))) {
                 return;
             }
 
@@ -38,7 +38,7 @@ class LogoutListener
             }
 
             $userAgent = $this->request->userAgent();
-            $log = $user->authentications()->whereIpAddress($ip)->whereUserAgent($userAgent)->orderByDesc('login_at')->first();
+            $log       = $user->authentications()->whereIpAddress($ip)->whereUserAgent($userAgent)->orderByDesc('login_at')->first();
 
             if (! $log) {
                 $log = new AuthenticationLog([

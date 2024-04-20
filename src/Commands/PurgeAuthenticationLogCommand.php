@@ -2,21 +2,21 @@
 
 namespace Bubka\LaravelAuthenticationLog\Commands;
 
-use Illuminate\Console\Command;
 use Bubka\LaravelAuthenticationLog\Models\AuthenticationLog;
+use Illuminate\Console\Command;
 
 class PurgeAuthenticationLogCommand extends Command
 {
     /**
      * The name and signature of the console command.
-     * 
+     *
      * @var string
      */
     public $signature = 'authentication-log:purge';
 
     /**
      * The console command description.
-     * 
+     *
      * @var string
      */
     public $description = 'Purge all authentication logs older than the configurable amount of days.';
@@ -24,7 +24,7 @@ class PurgeAuthenticationLogCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle(): void
+    public function handle() : void
     {
         $this->comment('Clearing authentication log...');
 

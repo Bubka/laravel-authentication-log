@@ -2,11 +2,11 @@
 
 namespace Bubka\LaravelAuthenticationLog\Notifications;
 
+use Bubka\LaravelAuthenticationLog\Models\AuthenticationLog;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Bubka\LaravelAuthenticationLog\Models\AuthenticationLog;
 
 class NewDevice extends Notification implements ShouldQueue
 {
@@ -17,9 +17,6 @@ class NewDevice extends Notification implements ShouldQueue
      */
     public AuthenticationLog $authenticationLog;
 
-    /**
-     * 
-     */
     public function __construct(AuthenticationLog $authenticationLog)
     {
         $this->authenticationLog = $authenticationLog;
@@ -41,11 +38,11 @@ class NewDevice extends Notification implements ShouldQueue
         return (new MailMessage())
             ->subject(__('Your :app account logged in from a new device.', ['app' => config('app.name')]))
             ->markdown('authentication-log::emails.new', [
-                'account' => $notifiable,
-                'time' => $this->authenticationLog->login_at,
+                'account'   => $notifiable,
+                'time'      => $this->authenticationLog->login_at,
                 'ipAddress' => $this->authenticationLog->ip_address,
-                'browser' => $this->authenticationLog->user_agent,
-                'location' => $this->authenticationLog->location,
+                'browser'   => $this->authenticationLog->user_agent,
+                'location'  => $this->authenticationLog->location,
             ]);
     }
 }

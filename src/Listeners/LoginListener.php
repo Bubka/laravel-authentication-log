@@ -2,11 +2,11 @@
 
 namespace Bubka\LaravelAuthenticationLog\Listeners;
 
+use Bubka\LaravelAuthenticationLog\Notifications\NewDevice;
+use Bubka\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Bubka\LaravelAuthenticationLog\Notifications\NewDevice;
-use Bubka\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
 
 class LoginListener
 {
@@ -17,7 +17,7 @@ class LoginListener
         $this->request = $request;
     }
 
-    public function handle(mixed $event): void
+    public function handle(mixed $event) : void
     {
         $listener = config('authentication-log.events.login', Login::class);
 
@@ -26,7 +26,7 @@ class LoginListener
         }
 
         if ($event->user) {
-            if(! in_array(AuthenticationLoggable::class, class_uses_recursive(get_class($event->user)))) {
+            if (! in_array(AuthenticationLoggable::class, class_uses_recursive(get_class($event->user)))) {
                 return;
             }
 
@@ -36,18 +36,18 @@ class LoginListener
                 $ip = $this->request->ip();
             }
 
-            $user = $event->user;
-            $userAgent = $this->request->userAgent();
-            $known = $user->authentications()->whereIpAddress($ip)->whereUserAgent($userAgent)->whereLoginSuccessful(true)->first();
-            $newUser = Carbon::parse($user->{$user->getCreatedAtColumn()})->diffInMinutes(Carbon::now()) < 1;
+            $user        = $event->user;
+            $userAgent   = $this->request->userAgent();
+            $known       = $user->authentications()->whereIpAddress($ip)->whereUserAgent($userAgent)->whereLoginSuccessful(true)->first();
+            $newUser     = Carbon::parse($user->{$user->getCreatedAtColumn()})->diffInMinutes(Carbon::now()) < 1;
             
             /** @disregard Undefined function */
             $log = $user->authentications()->create([
-                'ip_address' => $ip,
-                'user_agent' => $userAgent,
-                'login_at' => now(),
+                'ip_address'       => $ip,
+                'user_agent'       => $userAgent,
+                'login_at'         => now(),
                 'login_successful' => true,
-                'location' => config('authentication-log.notifications.new-device.location') ? optional(geoip()->getLocation($ip))->toArray() : null,
+                'location'         => config('authentication-log.notifications.new-device.location') ? optional(geoip()->getLocation($ip))->toArray() : null,
             ]);
 
             if (! $known && ! $newUser && config('authentication-log.notifications.new-device.enabled')) {

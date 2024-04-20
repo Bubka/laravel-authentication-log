@@ -10,7 +10,7 @@ trait AuthenticationLoggable
 {
     /**
      * Get all user's authentications from the auth log
-     * 
+     *
      * @return Collection<int, AuthenticationLog>
      */
     public function authentications()
@@ -20,7 +20,7 @@ trait AuthenticationLoggable
 
     /**
      * Get authentications for the provided timespan (in month)
-     * 
+     *
      * @return Collection<int, AuthenticationLog>
      */
     public function authenticationsByPeriod(int $period = 1)

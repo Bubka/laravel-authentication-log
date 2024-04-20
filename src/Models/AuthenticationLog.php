@@ -41,18 +41,18 @@ class AuthenticationLog extends Model
         'logout_at',
         'cleared_by_user',
         'location',
-        'auth_method'
+        'auth_method',
     ];
 
     /**
      * The attributes that should be cast.
      */
     protected $casts = [
-        'cleared_by_user' => 'boolean',
-        'location' => 'array',
+        'cleared_by_user'  => 'boolean',
+        'location'         => 'array',
         'login_successful' => 'boolean',
-        'login_at' => 'datetime',
-        'logout_at' => 'datetime',
+        'login_at'         => 'datetime',
+        'logout_at'        => 'datetime',
     ];
 
     /**
@@ -77,7 +77,7 @@ class AuthenticationLog extends Model
 
     /**
      * MorphTo relation to get the associated authenticatable user
-     * 
+     *
      * @return MorphTo<\Illuminate\Database\Eloquent\Model, AuthenticationLog>
      */
     public function authenticatable()
