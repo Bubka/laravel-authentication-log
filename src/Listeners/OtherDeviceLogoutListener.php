@@ -1,11 +1,11 @@
 <?php
 
-namespace Rappasoft\LaravelAuthenticationLog\Listeners;
+namespace Bubka\LaravelAuthenticationLog\Listeners;
 
 use Illuminate\Auth\Events\OtherDeviceLogout;
 use Illuminate\Http\Request;
-use Rappasoft\LaravelAuthenticationLog\Models\AuthenticationLog;
-use Rappasoft\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
+use Bubka\LaravelAuthenticationLog\Models\AuthenticationLog;
+use Bubka\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
 
 class OtherDeviceLogoutListener
 {

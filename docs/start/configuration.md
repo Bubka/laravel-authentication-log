@@ -8,18 +8,18 @@ weight: 2
 You can publish and run the migrations with:
 
 ```bash
-php artisan vendor:publish --provider="Rappasoft\LaravelAuthenticationLog\LaravelAuthenticationLogServiceProvider" --tag="authentication-log-migrations"
+php artisan vendor:publish --provider="Bubka\LaravelAuthenticationLog\LaravelAuthenticationLogServiceProvider" --tag="authentication-log-migrations"
 php artisan migrate
 ```
 
 You can publish the view/email files with:
 ```bash
-php artisan vendor:publish --provider="Rappasoft\LaravelAuthenticationLog\LaravelAuthenticationLogServiceProvider" --tag="authentication-log-views"
+php artisan vendor:publish --provider="Bubka\LaravelAuthenticationLog\LaravelAuthenticationLogServiceProvider" --tag="authentication-log-views"
 ```
 
 You can publish the config file with:
 ```bash
-php artisan vendor:publish --provider="Rappasoft\LaravelAuthenticationLog\LaravelAuthenticationLogServiceProvider" --tag="authentication-log-config"
+php artisan vendor:publish --provider="Bubka\LaravelAuthenticationLog\LaravelAuthenticationLogServiceProvider" --tag="authentication-log-config"
 ```
 
 This is the contents of the published config file:
@@ -50,7 +50,7 @@ return [
             'location' => true,
 
             // The Notification class to send
-            'template' => \Rappasoft\LaravelAuthenticationLog\Notifications\NewDevice::class,
+            'template' => \Bubka\LaravelAuthenticationLog\Notifications\NewDevice::class,
         ],
         'failed-login' => [
             // Send the FailedLogin notification
@@ -60,7 +60,7 @@ return [
             'location' => true,
 
             // The Notification class to send
-            'template' => \Rappasoft\LaravelAuthenticationLog\Notifications\FailedLogin::class,
+            'template' => \Bubka\LaravelAuthenticationLog\Notifications\FailedLogin::class,
         ],
     ],
 
@@ -82,7 +82,7 @@ You must add the `AuthenticationLoggable` and `Notifiable` traits to the models 
 
 ```php
 use Illuminate\Notifications\Notifiable;
-use Rappasoft\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
+use Bubka\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable

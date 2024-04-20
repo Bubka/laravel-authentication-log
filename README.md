@@ -1,13 +1,13 @@
-![Package Logo](https://banners.beyondco.de/Laravel%20Authentication%20Log.png?theme=dark&packageManager=composer+require&packageName=rappasoft%2Flaravel-authentication-log&pattern=hideout&style=style_1&description=Log+user+authentication+details+and+send+new+device+notifications.&md=1&showWatermark=0&fontSize=100px&images=lock-closed)
+![Package Logo](https://banners.beyondco.de/Laravel%20Authentication%20Log.png?theme=dark&packageManager=composer+require&packageName=bubka%2Flaravel-authentication-log&pattern=hideout&style=style_1&description=Log+user+authentication+details+and+send+new+device+notifications.&md=1&showWatermark=0&fontSize=100px&images=lock-closed)
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/rappasoft/laravel-authentication-log.svg?style=flat-square)](https://packagist.org/packages/rappasoft/laravel-authentication-log)
-[![Total Downloads](https://img.shields.io/packagist/dt/rappasoft/laravel-authentication-log.svg?style=flat-square)](https://packagist.org/packages/rappasoft/laravel-authentication-log)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/bubka/laravel-authentication-log.svg?style=flat-square)](https://packagist.org/packages/bubka/laravel-authentication-log)
+[![Total Downloads](https://img.shields.io/packagist/dt/bubka/laravel-authentication-log.svg?style=flat-square)](https://packagist.org/packages/bubka/laravel-authentication-log)
 
 Laravel Authentication Log is a package which tracks your user's authentication information such as login/logout time, IP, Browser, Location, etc. as well as sends out notifications via mail, slack, or sms for new devices and failed logins.
 
 ## Documentation, Installation, and Usage Instructions
 
-See the [documentation](https://rappasoft.com/docs/laravel-authentication-log) for detailed installation and usage instructions.
+See the [documentation](https://bubka.com/docs/laravel-authentication-log) for detailed installation and usage instructions.
 
 ## Version Compatibility
 
@@ -21,7 +21,7 @@ See the [documentation](https://rappasoft.com/docs/laravel-authentication-log) f
 ## Installation
 
 ```bash
-composer require rappasoft/laravel-authentication-log
+composer require bubka/laravel-authentication-log
 ```
 
 ## Testing
@@ -44,7 +44,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [Anthony Rappa](https://github.com/rappasoft)
+- [Anthony Rappa](https://github.com/bubka)
 - [yadahan/laravel-authentication-log](https://github.com/yadahan/laravel-authentication-log)
 - [All Contributors](../../contributors)
 

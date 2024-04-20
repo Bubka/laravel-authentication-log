@@ -1,8 +1,8 @@
 <?php
 
-namespace Rappasoft\LaravelAuthenticationLog\Traits;
+namespace Bubka\LaravelAuthenticationLog\Traits;
 
-use Rappasoft\LaravelAuthenticationLog\Models\AuthenticationLog;
+use Bubka\LaravelAuthenticationLog\Models\AuthenticationLog;
 
 trait AuthenticationLoggable
 {

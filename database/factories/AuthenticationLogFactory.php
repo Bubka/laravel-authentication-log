@@ -1,9 +1,9 @@
 <?php
 
-namespace Rappasoft\LaravelAuthenticationLog\Database\Factories;
+namespace Bubka\LaravelAuthenticationLog\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Rappasoft\LaravelAuthenticationLog\Models\AuthenticationLog;
+use Bubka\LaravelAuthenticationLog\Models\AuthenticationLog;
 
 class AuthenticationLogFactory extends Factory
 {

@@ -17,10 +17,10 @@ return [
     ],
 
     'listeners' => [
-        'login' => \Rappasoft\LaravelAuthenticationLog\Listeners\LoginListener::class,
-        'failed' => \Rappasoft\LaravelAuthenticationLog\Listeners\FailedLoginListener::class,
-        'logout' => \Rappasoft\LaravelAuthenticationLog\Listeners\LogoutListener::class,
-        'logout-other-devices' => \Rappasoft\LaravelAuthenticationLog\Listeners\OtherDeviceLogoutListener::class,
+        'login' => \Bubka\LaravelAuthenticationLog\Listeners\LoginListener::class,
+        'failed' => \Bubka\LaravelAuthenticationLog\Listeners\FailedLoginListener::class,
+        'logout' => \Bubka\LaravelAuthenticationLog\Listeners\LogoutListener::class,
+        'logout-other-devices' => \Bubka\LaravelAuthenticationLog\Listeners\OtherDeviceLogoutListener::class,
     ],
 
     'notifications' => [
@@ -32,7 +32,7 @@ return [
             'location' => true,
 
             // The Notification class to send
-            'template' => \Rappasoft\LaravelAuthenticationLog\Notifications\NewDevice::class,
+            'template' => \Bubka\LaravelAuthenticationLog\Notifications\NewDevice::class,
         ],
         'failed-login' => [
             // Send the FailedLogin notification
@@ -42,7 +42,7 @@ return [
             'location' => true,
 
             // The Notification class to send
-            'template' => \Rappasoft\LaravelAuthenticationLog\Notifications\FailedLogin::class,
+            'template' => \Bubka\LaravelAuthenticationLog\Notifications\FailedLogin::class,
         ],
     ],
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace Rappasoft\LaravelAuthenticationLog\Listeners;
+namespace Bubka\LaravelAuthenticationLog\Listeners;
 
 use Illuminate\Auth\Events\Failed;
 use Illuminate\Http\Request;
-use Rappasoft\LaravelAuthenticationLog\Notifications\FailedLogin;
-use Rappasoft\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
+use Bubka\LaravelAuthenticationLog\Notifications\FailedLogin;
+use Bubka\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
 
 class FailedLoginListener
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace Rappasoft\LaravelAuthenticationLog\Tests;
+namespace Bubka\LaravelAuthenticationLog\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Rappasoft\LaravelAuthenticationLog\LaravelAuthenticationLogServiceProvider;
+use Bubka\LaravelAuthenticationLog\LaravelAuthenticationLogServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -13,7 +13,7 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Rappasoft\\AuthenticationLog\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName) => 'Bubka\\AuthenticationLog\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
     }
 

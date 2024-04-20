@@ -1,9 +1,9 @@
 <?php
 
-namespace Rappasoft\LaravelAuthenticationLog\Commands;
+namespace Bubka\LaravelAuthenticationLog\Commands;
 
 use Illuminate\Console\Command;
-use Rappasoft\LaravelAuthenticationLog\Models\AuthenticationLog;
+use Bubka\LaravelAuthenticationLog\Models\AuthenticationLog;
 
 class PurgeAuthenticationLogCommand extends Command
 {

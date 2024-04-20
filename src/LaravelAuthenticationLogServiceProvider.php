@@ -1,17 +1,17 @@
 <?php
 
-namespace Rappasoft\LaravelAuthenticationLog;
+namespace Bubka\LaravelAuthenticationLog;
 
 use Illuminate\Auth\Events\Failed;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Auth\Events\OtherDeviceLogout;
 use Illuminate\Contracts\Events\Dispatcher;
-use Rappasoft\LaravelAuthenticationLog\Commands\PurgeAuthenticationLogCommand;
 use Rappasoft\LaravelAuthenticationLog\Listeners\FailedLoginListener;
 use Rappasoft\LaravelAuthenticationLog\Listeners\LoginListener;
 use Rappasoft\LaravelAuthenticationLog\Listeners\LogoutListener;
 use Rappasoft\LaravelAuthenticationLog\Listeners\OtherDeviceLogoutListener;
+use Bubka\LaravelAuthenticationLog\Commands\PurgeAuthenticationLogCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 

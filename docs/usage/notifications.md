@@ -18,11 +18,11 @@ You must install the [Slack](https://laravel.com/docs/8.x/notifications#routing-
 
 ## New Device Notifications
 
-Enabled by default, they use the `\Rappasoft\LaravelAuthenticationLog\Notifications\NewDevice` class which can be overridden in the config file.
+Enabled by default, they use the `\Bubka\LaravelAuthenticationLog\Notifications\NewDevice` class which can be overridden in the config file.
 
 ## Failed Login Notifications
 
-Disabled by default, they use the `\Rappasoft\LaravelAuthenticationLog\Notifications\FailedLogin` class which can be overridden in the config file.
+Disabled by default, they use the `\Bubka\LaravelAuthenticationLog\Notifications\FailedLogin` class which can be overridden in the config file.
 
 ## Location
 
