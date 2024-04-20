@@ -3,6 +3,8 @@
 namespace Bubka\LaravelAuthenticationLog\Traits;
 
 use Bubka\LaravelAuthenticationLog\Models\AuthenticationLog;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 
 trait AuthenticationLoggable
 {
@@ -16,14 +18,26 @@ trait AuthenticationLoggable
         return $this->morphMany(AuthenticationLog::class, 'authenticatable')->latest('id');
     }
 
-    public function latestAuthentication()
+    /**
+     * Get authentications for the provided timespan (in month)
+     * 
+     * @return Collection<int, AuthenticationLog>
+     */
+    public function authenticationsByPeriod(int $period = 1)
     {
-        return $this->morphOne(AuthenticationLog::class, 'authenticatable')->latestOfMany('login_at');
+        $from = Carbon::now()->subMonths($period);
+
+        return $this->authentications->filter(function (AuthenticationLog $authentication) use ($from) {
+            return $authentication->login_at >= $from || $authentication->logout_at >= $from;
+        });
     }
 
-    public function notifyAuthenticationLogVia(): array
+    /**
+     * Get the user's latest authentication
+     */
+    public function latestAuthentication() : ?AuthenticationLog
     {
-        return ['mail'];
+        return $this->morphOne(AuthenticationLog::class, 'authenticatable')->latestOfMany('login_at');
     }
 
     /**
@@ -72,5 +86,13 @@ trait AuthenticationLoggable
     public function previousLoginIp() : ?string
     {
         return $this->authentications()->skip(1)->first()?->ip_address;
+    }
+
+    /**
+     * The notification channels to be used for notifications
+     */
+    public function notifyAuthenticationLogVia() : array
+    {
+        return ['mail'];
     }
 }
