@@ -39,11 +39,13 @@ class OtherDeviceLogoutListener
 
             $userAgent         = $this->request->userAgent();
             $authenticationLog = $user->authentications()->whereIpAddress($ip)->whereUserAgent($userAgent)->first();
+            $guard             = $event->guard;
 
             if (! $authenticationLog) {
                 $authenticationLog = new AuthenticationLog([
                     'ip_address' => $ip,
                     'user_agent' => $userAgent,
+                    'guard'      => $guard,
                 ]);
             }
 

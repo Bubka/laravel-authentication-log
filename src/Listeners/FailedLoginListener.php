@@ -35,6 +35,16 @@ class FailedLoginListener
                 $ip = $this->request->ip();
             }
 
+            $guard = $event->guard;
+
+            if ($this->request->has('response.authenticatorData')) {
+                $login_method = 'webauthn';
+            } elseif ($this->request->has('password')) {
+                $login_method = 'password';
+            } else {
+                $login_method = null;
+            }
+
             /** @disregard Undefined function */
             $log = $event->user->authentications()->create([
                 'ip_address'       => $ip,
@@ -42,6 +52,8 @@ class FailedLoginListener
                 'login_at'         => now(),
                 'login_successful' => false,
                 'location'         => config('authentication-log.notifications.new-device.location') ? optional(geoip()->getLocation($ip))->toArray() : null,
+                'guard'            => $guard,
+                'login_method'     => $login_method,
             ]);
 
             if (config('authentication-log.notifications.failed-login.enabled')) {

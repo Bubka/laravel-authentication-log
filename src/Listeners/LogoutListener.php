@@ -39,11 +39,13 @@ class LogoutListener
 
             $userAgent = $this->request->userAgent();
             $log       = $user->authentications()->whereIpAddress($ip)->whereUserAgent($userAgent)->orderByDesc('login_at')->first();
+            $guard     = $event->guard;
 
             if (! $log) {
                 $log = new AuthenticationLog([
                     'ip_address' => $ip,
                     'user_agent' => $userAgent,
+                    'guard'      => $guard,
                 ]);
             }
 

@@ -36,11 +36,20 @@ class LoginListener
                 $ip = $this->request->ip();
             }
 
-            $user        = $event->user;
-            $userAgent   = $this->request->userAgent();
-            $known       = $user->authentications()->whereIpAddress($ip)->whereUserAgent($userAgent)->whereLoginSuccessful(true)->first();
-            $newUser     = Carbon::parse($user->{$user->getCreatedAtColumn()})->diffInMinutes(Carbon::now()) < 1;
-            
+            $user      = $event->user;
+            $userAgent = $this->request->userAgent();
+            $known     = $user->authentications()->whereIpAddress($ip)->whereUserAgent($userAgent)->whereLoginSuccessful(true)->first();
+            $newUser   = Carbon::parse($user->{$user->getCreatedAtColumn()})->diffInMinutes(Carbon::now()) < 1;
+            $guard     = $event->guard;
+
+            if ($this->request->has('response.authenticatorData')) {
+                $login_method = 'webauthn';
+            } elseif ($this->request->has('password')) {
+                $login_method = 'password';
+            } else {
+                $login_method = null;
+            }
+
             /** @disregard Undefined function */
             $log = $user->authentications()->create([
                 'ip_address'       => $ip,
@@ -48,6 +57,8 @@ class LoginListener
                 'login_at'         => now(),
                 'login_successful' => true,
                 'location'         => config('authentication-log.notifications.new-device.location') ? optional(geoip()->getLocation($ip))->toArray() : null,
+                'guard'            => $guard,
+                'login_method'     => $login_method,
             ]);
 
             if (! $known && ! $newUser && config('authentication-log.notifications.new-device.enabled')) {
