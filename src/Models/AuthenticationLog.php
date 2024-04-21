@@ -16,7 +16,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property \Illuminate\Support\Carbon|null $logout_at
  * @property bool $cleared_by_user
  * @property array|null $location
- * @property string|null $auth_method
+ * @property string|null $guard
+ * @property string|null $method
  */
 class AuthenticationLog extends Model
 {
@@ -41,7 +42,8 @@ class AuthenticationLog extends Model
         'logout_at',
         'cleared_by_user',
         'location',
-        'auth_method',
+        'guard',
+        'login_method',
     ];
 
     /**
